@@ -25,6 +25,8 @@ class UserProfile {
         uid: data['uid']
     );
   }
+//toJson mainly update er kaje
+// firestore_db er kaj ta korar jonno
 
   toJson() {
     return {
