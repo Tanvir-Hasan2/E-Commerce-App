@@ -23,20 +23,12 @@ class AuthController extends GetxController {
 
       if (credential.user!.uid.isNotEmpty) {
         CollectionReference collectionReference =
-        FirebaseFirestore.instance.collection('users');
+            FirebaseFirestore.instance.collection('users');
         collectionReference
             .doc(email)
-            .set({
-          'uid': credential.user!.uid,
-          'email': email,
-          'name': name
-        });
+            .set({'uid': credential.user!.uid, 'email': email, 'name': name});
 
-        Map user = {
-          'uid': credential.user!.uid,
-          'email': email,
-          'name': name
-        };
+        Map user = {'uid': credential.user!.uid, 'email': email, 'name': name};
 
         box.write('user', user);
         print(box.read('user'));
@@ -73,7 +65,7 @@ class AuthController extends GetxController {
             .get()
             .then((DocumentSnapshot<Map<String, dynamic>> doc) {
           if (doc.exists) {
-            var data = doc.data();//data er moddhe shob data chole asbe
+            var data = doc.data(); //data er moddhe shob data chole asbe
             print(data);
             Map user = {
               'uid': data!['uid'],
@@ -114,7 +106,8 @@ class AuthController extends GetxController {
           AppStyles().customSnackBar('Email has been sent to $email'));
     } catch (e) {
       Get.back();
-      Get.showSnackbar(AppStyles().customSnackBar('Something is wrong! Please try again.'));
+      Get.showSnackbar(
+          AppStyles().customSnackBar('Something is wrong! Please try again.'));
     }
   }
 
@@ -122,52 +115,4 @@ class AuthController extends GetxController {
   logout() async {
     _auth.signOut();
   }
-
-  // Google Sign-In
-  Future<User?> signInWithGoogle() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    if (googleUser != null) {
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-      final OAuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-      final UserCredential userCredential = await _auth.signInWithCredential(credential);
-      return userCredential.user;
-    }
-    return null;
-  }
-
-  // // Facebook Sign-In
-  // Future<User?> signInWithFacebook() async {
-  //   final LoginResult result = await FacebookAuth.instance.login();
-  //   if (result.status == LoginStatus.success) {
-  //     final AccessToken accessToken = result.accessToken!;
-  //     final OAuthCredential credential = FacebookAuthProvider.credential(accessToken.token);
-  //     final UserCredential userCredential = await _auth.signInWithCredential(credential);
-  //     return userCredential.user;
-  //   }
-  //   return null;
-  // }
-
-  // Apple Sign-In
-
-  Future<User?> signInWithApple() async {
-    final AuthorizationCredentialAppleID appleCredential = await SignInWithApple.getAppleIDCredential(
-      scopes: [
-        AppleIDAuthorizationScopes.email,
-        AppleIDAuthorizationScopes.fullName,
-      ],
-    );
-
-    final OAuthCredential credential = OAuthProvider("apple.com").credential(
-      idToken: appleCredential.identityToken,
-      accessToken: appleCredential.authorizationCode,
-    );
-    final UserCredential userCredential = await _auth.signInWithCredential(credential);
-    return userCredential.user;
-  }
-
-
-
 }

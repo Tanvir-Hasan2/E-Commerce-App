@@ -12,7 +12,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
-
 class Registration extends StatelessWidget {
   Registration({super.key});
 
@@ -22,7 +21,8 @@ class Registration extends StatelessWidget {
 
   RxBool _value = false.obs; //for checkbox
 
-  final _formKey = GlobalKey<FormState>(); //formkey ta mainly validation er jonno use kora
+  final _formKey =
+      GlobalKey<FormState>(); //formkey ta mainly validation er jonno use kora
 
   @override
   Widget build(BuildContext context) {
@@ -189,36 +189,21 @@ class Registration extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CustomInkWellButton(
-                          onTap: () {
-                          },
+                          onTap: () {},
                           icon: Image.asset('assets/icons/facebook.png'),
                         ),
                         SizedBox(
                           width: 20,
                         ),
                         CustomInkWellButton(
-                          onTap: () async {
-                            User? user = await authController.signInWithGoogle();
-                            if (user != null) {
-                              Get.showSnackbar(AppStyles().customSnackBar('Google SignUp successful'));
-                            } else {
-                              Get.showSnackbar(AppStyles().customSnackBar('Google SignUp failed'));
-                            }
-                          },
+                          onTap: () {},
                           icon: Image.asset('assets/icons/search.png'),
                         ),
                         SizedBox(
                           width: 20,
                         ),
                         CustomInkWellButton(
-                          onTap: () async {
-                            User? user = await authController.signInWithApple();
-                            if (user != null) {
-                              Get.showSnackbar(AppStyles().customSnackBar('Apple SignUp successful'));
-                            } else {
-                              Get.showSnackbar(AppStyles().customSnackBar('Apple SignUp failed'));
-                            }
-                          },
+                          onTap: () {},
                           icon: Image.asset('assets/icons/apple.png'),
                         ),
                       ],
