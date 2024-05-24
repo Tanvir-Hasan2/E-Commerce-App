@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+//same as the user profile model class
 class Product {
   final String brand;
   final String category;

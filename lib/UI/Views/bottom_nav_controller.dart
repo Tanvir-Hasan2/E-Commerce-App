@@ -1,5 +1,5 @@
 import 'package:e_commerce/Const/app_colors.dart';
-import 'package:e_commerce/UI/Views/Nav%20Pages/add_to_cart.dart';
+import 'package:e_commerce/UI/Views/Nav%20Pages/cart.dart';
 import 'package:e_commerce/UI/Views/Nav%20Pages/favourite.dart';
 import 'package:e_commerce/UI/Views/Nav%20Pages/home.dart';
 import 'package:e_commerce/UI/Views/Nav%20Pages/profile.dart';
@@ -15,7 +15,7 @@ class BottomNavController extends StatelessWidget {
   final _pages = [
     Home(),
     Favourite(),
-    AddToCart(),
+    Cart(),
     Profile(),
   ];
 

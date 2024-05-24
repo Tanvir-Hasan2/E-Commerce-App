@@ -7,7 +7,7 @@ class SplashController extends GetxController {
   final box = GetStorage();
   chooseScreen() {
     var value = box.read('user');
-    if (value['uid'] == null) {
+    if (value == null) {
       Get.offAndToNamed(intro);
     } else {
       Get.offAndToNamed(bottomNav);

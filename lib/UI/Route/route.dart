@@ -1,17 +1,18 @@
-
 import 'package:e_commerce/Business%20Logics/Bindings/auth_binding.dart';
+import 'package:e_commerce/Business%20Logics/Bindings/cart_binding.dart';
+import 'package:e_commerce/Business%20Logics/Bindings/checkout_binding.dart';
+import 'package:e_commerce/Business%20Logics/Bindings/favourite_binding.dart';
 import 'package:e_commerce/Business%20Logics/Bindings/splash_binding.dart';
 import 'package:e_commerce/UI/Views/Auth/forget_password.dart';
 import 'package:e_commerce/UI/Views/Auth/login.dart';
 import 'package:e_commerce/UI/Views/Auth/registration.dart';
+import 'package:e_commerce/UI/Views/Nav%20Pages/home.dart';
 import 'package:e_commerce/UI/Views/bottom_nav_controller.dart';
 import 'package:e_commerce/UI/Views/not_found.dart';
 import 'package:e_commerce/UI/Views/onboarding.dart';
 import 'package:e_commerce/UI/Views/splash.dart';
 import 'package:e_commerce/UI/Views/terms_conditions.dart';
 import 'package:get/get.dart';
-
-
 
 const String splash = '/splash-screen';
 const String unknown = '/not-found';
@@ -22,6 +23,7 @@ const String registration = '/registration';
 const String forgetPass = '/forgetPass';
 const String termCon = '/termCondition';
 const String bottomNav = '/bottomNav';
+const String details = '/details';
 
 List<GetPage> getPages = [
   GetPage(
@@ -60,5 +62,14 @@ List<GetPage> getPages = [
   GetPage(
     name: bottomNav,
     page: () => BottomNavController(),
+    bindings: [
+      CartBinding(),
+      FavouriteBinding(),
+      CheckoutBinding(),
+    ],
+  ),
+  GetPage(
+    name: details,
+    page: () => DetailsScreen(data: Get.arguments),
   ),
 ];
